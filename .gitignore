@@ -79,3 +79,5 @@ package-lock.json
 .DS_Store
 
 dist/
+
+src/services/ApiService
