@@ -24,7 +24,7 @@ export default class Login extends Component {
         const { history } = this.props;
         localStorage.setItem(TOKEN_KEY, result.token);
 
-        localStorage.setItem(USER, result.user.email);
+        localStorage.setItem(USER, JSON.stringify(result.user));
 
         console.log("Logado", result);
         history.push("/");

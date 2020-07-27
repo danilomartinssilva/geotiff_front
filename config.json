@@ -27,6 +27,7 @@
     "min",
     "mode",
     "raster-calculator",
-    "sum"
+    "sum",
+    "list-areas"
   ]
 }

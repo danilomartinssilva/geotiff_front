@@ -3,8 +3,7 @@ import React from "react";
 import ToolButton from "../tool-button";
 import { getUser } from "../../services/auth";
 
-const user = getUser();
-
+const user = JSON.parse(getUser());
 const MenuComponent = ({
   toolList,
   menuFocus,
@@ -24,7 +23,7 @@ const MenuComponent = ({
       }}
     >
       <span className="menu-header-icon"></span>
-      Bem vindo, <strong>{user}</strong>
+      Bem vindo, <strong>{user.name}</strong>
       <a href="/logout" style={{ marginLeft: 20 }}>
         Sair
       </a>

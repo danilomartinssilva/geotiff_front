@@ -1,16 +1,16 @@
-import OfflinePluginRuntime from 'offline-plugin/runtime';
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
-import App from './components/app';
-import buildStore from './build-store';
-import { Provider } from 'react-redux';
-import { loadTools } from './actions/tool-list-actions';
-import { addRaster } from './actions/raster-actions';
-import UrlService from './services/UrlService';
-import ToolListService from './services/ToolListService';
-import Map from './Map';
-import '../styles/style.less';
+import OfflinePluginRuntime from "offline-plugin/runtime";
+import React from "react";
+import ReactDOM from "react-dom";
+import { BrowserRouter } from "react-router-dom";
+import App from "./components/app";
+import buildStore from "./build-store";
+import { Provider } from "react-redux";
+import { loadTools } from "./actions/tool-list-actions";
+import { addRaster } from "./actions/raster-actions";
+import UrlService from "./services/UrlService";
+import ToolListService from "./services/ToolListService";
+import Map from "./Map";
+import "../styles/style.less";
 
 OfflinePluginRuntime.install();
 
@@ -18,21 +18,20 @@ const store = buildStore();
 store.dispatch(loadTools());
 window.store = store; // made this global so it can be accessed from Map
 
-const url = UrlService.get('url');
+const url = UrlService.get("url");
 if (url) {
   store.dispatch(addRaster(url));
 }
 
-const toolName = UrlService.get('tool');
+const toolName = UrlService.get("tool");
 if (toolName) {
   const toolList = ToolListService.getToolList();
-  const tool = toolList.find(tool => tool.param === toolName);
+  const tool = toolList.find((tool) => tool.param === toolName);
   if (tool) {
-
     // newSearch is usually something like ?auto_start=true&url=...
     const newSearch = window.location.search
-      .replace(/(\?|&)tool=[a-z-]{3,100}/, '') // remove tool=... param from url
-      .replace(/^./, '?'); // mark sure starting search param is a question mark
+      .replace(/(\?|&)tool=[a-z-]{3,100}/, "") // remove tool=... param from url
+      .replace(/^./, "?"); // mark sure starting search param is a question mark
 
     // newPathName is usually something like 'identify' or 'min'
     const newPathName = tool.path;
@@ -41,7 +40,7 @@ if (toolName) {
     const newUrl = newPathName + newSearch;
 
     /* global history */
-    history.replaceState({}, 'identify', newUrl);
+    history.replaceState({}, "identify", newUrl);
   }
 }
 
@@ -51,7 +50,7 @@ ReactDOM.render(
       <App />
     </BrowserRouter>
   </Provider>,
-  document.getElementById('app')
+  document.getElementById("app")
 );
 
 Map.initialize();

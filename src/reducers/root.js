@@ -9,6 +9,7 @@ import menuFocus from "./menu-focus";
 import raster from "./raster";
 import results from "./results";
 import toolList from "./tool-list";
+import areas from "./areas";
 
 const rootReducer = combineReducers({
   activeTool,
@@ -21,6 +22,7 @@ const rootReducer = combineReducers({
   raster,
   results,
   toolList,
+  areas,
 });
 
 export default rootReducer;

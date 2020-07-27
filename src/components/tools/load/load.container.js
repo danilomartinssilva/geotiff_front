@@ -4,6 +4,7 @@ import { doUpload } from "../../../actions/save-file-actions";
 import { connect } from "react-redux";
 import { compose, withState, withHandlers } from "recompose";
 import { showAlert } from "../../../actions/alert-actions";
+import { saveFile } from "../../../services/UploadFileService";
 
 // let urlToTiff = new URLSearchParams(window.location.search).get("url");
 // if (urlToTiff) window.loadRaster(urlToTiff);
@@ -31,9 +32,8 @@ export const loadState = compose(
     updateFileInput: ({ setFileInput }) => (event) => {
       return setFileInput(event.target.files[0]);
     },
-    safeFileAreaHandler: () => (event) => {
-      alert("Chamou aqui");
-      doUpload();
+    safeFileAreaHandler: ({ urlInput, fileinput, showAlert }) => (event) => {
+      console.log(urlInput);
     },
 
     loadRaster: ({ urlInput, fileInput, addRaster, showAlert }) => () => {
@@ -42,6 +42,9 @@ export const loadState = compose(
           if (urlInput !== "") {
             if (urlIsValid(urlInput)) {
               await addRaster(urlInput);
+              /*  if (window.confirm("Você realmente quer sair?")) {
+               
+              } */
 
               resolve(true);
             } else {
@@ -51,6 +54,9 @@ export const loadState = compose(
             }
           } else if (fileInput !== "") {
             await addRaster(fileInput);
+            if (window.confirm("Deseja salvar o arquivo?")) {
+              await saveFile(fileInput);
+            }
 
             resolve(true);
           } else {

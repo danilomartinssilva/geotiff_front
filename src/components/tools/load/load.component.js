@@ -35,8 +35,12 @@ const LoadComponent = ({
         <button className="gt-button-accent full" onClick={loadRaster}>
           Load
         </button>
-        <button className="gt-button-accent full" onClick={safeFileAreaHandler}>
-          Salvar
+        <button
+          className="gt-button-accent full"
+          style={{ marginTop: "20" }}
+          onClick={safeFileAreaHandler}
+        >
+          Salvar no Perfil
         </button>
       </div>
     </ToolContent>

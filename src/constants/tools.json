@@ -65,6 +65,12 @@
       "iconUrl": "./images/histogram.svg",
       "param": "histogram",
       "path": "/histogram"
+    },
+    {
+      "name": "Listagem de Areas",
+      "iconUrl": "./images/histogram.svg",
+      "param": "list-areas",
+      "path": "/list-areas"
     }
   ]
 }
