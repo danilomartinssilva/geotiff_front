@@ -11,13 +11,20 @@ export const doUpload = (file) => {
     formData.append("geotifFile", file);
     formData.append("user_id", user.id);
     console.log("FormData", formData);
-    return Axios.post(`http://192.168.100.85:3010/create-file-area`, formData, {
+    return ApiService.post("create-file-area", formData, {
       headers: {
         "content-type": "multipart/form-data",
       },
-    }).then((retorno) => {
-      console.log("Retorno", retorno);
-    });
+    })
+      /* Axios.post(`http://192.168.100.85:3010/create-file-area`, formData, {
+      headers: {
+        "content-type": "multipart/form-data",
+      },
+    }) */ .then(
+        (retorno) => {
+          console.log("Retorno", retorno);
+        }
+      );
   };
 };
 
